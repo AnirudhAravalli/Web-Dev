@@ -36,4 +36,4 @@ function getData(DataID) {
     await getData(1)
     await getData(2)
     await getData(3)
-})();
+})
