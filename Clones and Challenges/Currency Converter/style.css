@@ -20,7 +20,7 @@ body {
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 form {
@@ -35,6 +35,8 @@ form select, button, input {
 
 input {
     margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: -1rem;
 }
 
 form input {
@@ -56,18 +58,18 @@ form input {
 
 .select-container {
     display: flex;
-    align-items: center; /* Vertically align flag and select */
+    align-items: center; 
     background-color: #FDFFFC;
     border-radius: 0.5rem;
     border: 1px solid lightgray;
     margin-top: 0.75rem;
-    padding: 0.2rem 0.5rem; /* Add padding for better spacing */
+    padding: 0.2rem 0.5rem; 
 }
 
 .select-container img {
-    width: 2rem; /* Slightly increased width */
-    height: 1.5rem; /* Slightly increased height */
-    object-fit: contain; /* Maintain aspect ratio */
+    width: 2rem; 
+    height: 1.5rem; 
+    object-fit: contain; 
     margin-right: 0.5rem;
 }
 
@@ -77,15 +79,29 @@ form input {
     border: none;
     outline: none;
     width: auto;
-    flex-grow: 1; /* Take up remaining space */
+    flex-grow: 1; 
 }
 
 .msg {
+
     margin: 2rem 0;
+    text-align: center;
+}
+
+#final-rate {
+    font-size: 1.5rem;
+    color: #535551;
 }
 
 form button {
     height: 2rem;
     font-size: 1rem;
     background-color: #FDFFFC;
+}
+
+.get-rate {
+    height: 3rem;
+    background-color: #2F3E46;
+    border-radius: 10rem;
+    color: #FDFFFC;
 }

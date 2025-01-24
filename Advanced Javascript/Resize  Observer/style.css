@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+
+}
+
+.box {
+    margin: 50px;
+    background-color: red;
+    width: 500px;
+    height: 500px;
+    transition: ease-in 0.5s;
+}
+
+.text {
+    height: 500px;
+    font-size: x-large;
+}
