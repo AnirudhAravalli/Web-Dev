@@ -51,7 +51,6 @@ app.put("/jokes/:id", (req, res) => {
   const searchIndex = jokes.findIndex((joke) => joke.id === id);
 
   jokes[searchIndex] = replacementJoke;
-  // console.log(jokes);
   res.json(replacementJoke);
 });
 

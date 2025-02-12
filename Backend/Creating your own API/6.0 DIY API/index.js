@@ -36,16 +36,72 @@ app.get("/filter", (req, res) => {
 //4. POST a new joke
 
 app.post("/jokes", (req, res) => {
-  
+  let joke = req.body.jokeText
+  let type = req.body.jokeType
+
+  let newJoke = {
+    id: jokes.length + 1,
+    jokeText: joke,
+    jokeType: type
+  }
+
+  jokes.push(newJoke)
 })
 
 //5. PUT a joke
+app.put("/jokes/:id", (req, res) => {
+  let jokeId = parseInt(req.params.id)
+  let replacementJoke = {
+    id: jokeId,
+    newJokeText: req.body.text,
+    newJokeType: req.body.type
+  }
+
+  const index = jokes.findIndex((joke) => joke.id === jokeId)
+
+  jokes[index] = replacementJoke
+  res.json(jokes[index])
+  res.send("Put request fulfilled successfully")
+})
 
 //6. PATCH a joke
+app.patch("/jokes/:id", (req, res) => {
+  let jokeId = parseInt(req.params.id)
+  let existingJoke = jokes.find((joke) => joke.id === jokeId)
+  let replacementJoke = {
+    id: jokeId,
+    jokeText: existingJoke.jokeText || req.body.text,
+    jokeType: existingJoke.jokeType || req.body.type
+  }
+
+  existingJoke = replacementJoke
+  res.json(replacementJoke)
+})
 
 //7. DELETE Specific joke
+app.delete("/jokes/:id", (req, res) => {
+  let jokeId = parseInt(req.params.id)
+  if(jokeId) {
+    let index = jokes.findIndex((joke) => joke.id === jokeId)
+    const removedJoke = jokes.splice(index, 1)
+
+    res.json(removedJoke)
+  }
+})
 
 //8. DELETE All jokes
+app.delete("/all", (req, res) => {
+  const key = req.query.key
+  if(key === masterKey) {
+    jokes = []
+    res.json(jokes)
+    res.sendStatus(200)
+  }
+  else {
+    res.status(404)
+    res.json({error: "You are not authorized to perform this action"})
+  }
+})
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
