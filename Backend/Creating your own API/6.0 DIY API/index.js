@@ -50,31 +50,38 @@ app.post("/jokes", (req, res) => {
 
 //5. PUT a joke
 app.put("/jokes/:id", (req, res) => {
-  let jokeId = parseInt(req.params.id)
-  let replacementJoke = {
-    id: jokeId,
-    newJokeText: req.body.text,
-    newJokeType: req.body.type
+  let jokeId = parseInt(req.params.id);
+  let index = jokes.findIndex(joke => joke.id === jokeId);
+  if (index === -1) {
+    return res.status(404).json({ error: "Joke not found" });
   }
+  jokes[index] = {
+    id: jokeId,
+    jokeText: req.body.text,
+    jokeType: req.body.type
+  };
+  res.json(jokes[index]);
+});
 
-  const index = jokes.findIndex((joke) => joke.id === jokeId)
-
-  jokes[index] = replacementJoke
-  res.json(jokes[index])
-  res.send("Put request fulfilled successfully")
-})
 
 //6. PATCH a joke
 app.patch("/jokes/:id", (req, res) => {
   let jokeId = parseInt(req.params.id)
-  let existingJoke = jokes.find((joke) => joke.id === jokeId)
+  // let existingJoke = jokes.find((joke) => joke.id === jokeId)
+  let index = jokes.findIndex((joke) => joke.id === jokeId)
   let replacementJoke = {
     id: jokeId,
     jokeText: existingJoke.jokeText || req.body.text,
     jokeType: existingJoke.jokeType || req.body.type
   }
 
-  existingJoke = replacementJoke
+  if(req.body.text) {
+    jokes[index].jokeText = req.body.text
+  }
+
+  if(req.body.type)
+    jokes[index].jokeText = req.body.type
+
   res.json(replacementJoke)
 })
 
