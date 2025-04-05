@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            height: 15vh;
+            width: 100vw;
+            background-color: red;
+        }
+
+        .links {
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #fff
+        }
+
+        .content {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            width: 100vw;
+        }
+        
+        .button {
+            align-self: center ;
+        }
+
+        .sidebar {
+            width: 15vh;
+            background-color: green;
+        }
+
+        .footer {
+            height: 15vh ;
+            background-color: blue;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="links">
+           <div class="link">Link 1</div> 
+           <div class="link">Link 2</div> 
+           <div class="link">Link 3</div> 
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar left"></div>
+        <button class="button">Reverse!</button>
+        <div class="sidebar right"></div>
+    </div>
+    <div class="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

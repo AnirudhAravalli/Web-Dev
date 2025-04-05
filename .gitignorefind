@@ -1,0 +1,3 @@
+node_modules/
+.DS_Store
+*.log.env /Users/anirudharavalli/Web Dev -path */\.* -prune -o -name .gitignore -not -path /Users/anirudharavalli/Web Dev/.gitignore -exec rm {} ;git add .
