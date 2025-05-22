@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "local-mcp-server": {
+      "name": "Server",
+      "version": "1.0.0",
+      "path": "/Users/anirudharavalli/Web Dev/Backend/MCP Servers/index.ts",
+      "transport": "stdio",
+      "enabled": true
+    }
+  }
+}
