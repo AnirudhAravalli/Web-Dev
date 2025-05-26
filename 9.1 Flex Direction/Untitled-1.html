@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Div</title>
+    <style>
+        #draggable {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            position: absolute;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="draggable">Drag me</div>
+
+    <script>
+        const dragDiv = document.getElementById("draggable");
+
+        // Load saved position
+        const savedPosition = JSON.parse(localStorage.getItem("dragPosition"));
+        if (savedPosition) {
+            dragDiv.style.left = `${savedPosition.x}px`;
+            dragDiv.style.top = `${savedPosition.y}px`;
+        }
+
+        let offsetX, offsetY, isDragging = false;
+
+        dragDiv.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            offsetX = e.clientX - dragDiv.offsetLeft;
+            offsetY = e.clientY - dragDiv.offsetTop;
+            dragDiv.style.cursor = "grabbing";
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+            dragDiv.style.left = `${x}px`;
+            dragDiv.style.top = `${y}px`;
+        });
+
+        document.addEventListener("mouseup", () => {
+            if (isDragging) {
+                localStorage.setItem("dragPosition", JSON.stringify({
+                    x: dragDiv.offsetLeft,
+                    y: dragDiv.offsetTop
+                }));
+            }
+            isDragging = false;
+            dragDiv.style.cursor = "grab";
+        });
+    </script>
+</body>
+</html>

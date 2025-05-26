@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Themed Frontend</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <div class="container mx-auto p-4 max-w-md">
+        <button id="fetchButton"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 flex items-center justify-center w-full">
+            <span id="buttonText">Fetch Text</span>
+        </button>
+        <div id="tableContainer"
+            class="mt-4 p-4 bg-black rounded shadow-lg opacity-0 transition-opacity duration-500 border border-gray-700">
+            <table class="w-full border-collapse border border-gray-700 table-fixed">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="border border-gray-600 p-2 w-1/2">Name</th>
+                        <th class="border border-gray-600 p-2 w-1/2">City</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const button = document.getElementById('fetchButton');
+        const buttonText = document.getElementById('buttonText');
+        const tableContainer = document.getElementById('tableContainer');
+        const tableBody = document.getElementById('tableBody');
+
+        button.addEventListener('click', async () => {
+            button.disabled = true;
+            buttonText.innerHTML = '<div class="spinner"></div> Fetching...';
+            tableBody.innerHTML = ""; // Clear previous data
+
+            try {
+                const response = await fetch('/get-data');
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    data.forEach(employee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td class="border border-gray-600 p-2">${employee.name}</td>
+                    <td class="border border-gray-600 p-2">${employee.city}</td>
+                `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="2" class="text-center p-2">No employee data available.</td></tr>`;
+                }
+
+                tableContainer.classList.remove('opacity-0');
+                tableContainer.classList.add('opacity-100');
+            } catch (error) {
+                console.error('Error:', error);
+                tableBody.innerHTML = `<tr><td colspan="2" class="text-center p-2 text-red-500">Failed to fetch data.</td></tr>`;
+                tableContainer.classList.remove('opacity-0');
+                tableContainer.classList.add('opacity-100');
+            } finally {
+                button.disabled = false;
+                buttonText.innerHTML = 'Fetch Text';
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

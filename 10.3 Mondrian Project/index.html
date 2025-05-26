@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+
+    .red {
+      background-color: #E72F24;
+      margin-right: 9px; 
+      margin-bottom: 9px;
+    }
+
+    .white {
+      background-color: #F0F1EC;
+    }
+
+    .black {
+      background-color: #232629;
+    }
+
+    .blue {
+      background-color: #004592;
+      flex: 0 0 140px;
+    }
+
+    .yellow {
+      background-color: #F9D01E;
+      height: 20px;
+      width: 207px;
+      margin-right: 9px;
+    }
+
+    .fifth-white {
+      flex: 0 0 184px;
+    }
+
+    .container {
+      display: grid;
+      width: 748px;
+      grid-template-columns: 329px 369px 50px;
+      grid-template-rows: 423px 304px 20px;
+      background-color: black;
+
+    }
+
+    .second {
+      grid-column: span 2;
+      margin-bottom: 9px;
+    }
+
+    .third {
+      margin-right: 9px;
+      margin-bottom: 9px;
+    }
+
+    .fourth {
+      margin-right: 9px;
+      margin-bottom: 9px;
+    }
+
+    .fifth {
+      display: flex;
+      flex-direction: column;
+      background-color: black;
+    }
+    
+    .sixth {
+      margin-right: 9px;
+    }
+
+    .alignment {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="alignment">
+    <div class="container">
+      <div class="red first"></div>
+      <div class="white second"></div>
+      <div class="white third"></div>
+      <div class="white fourth"></div>
+      <div class="fifth">
+        <div class="blue"></div>
+        <div class="white fifth-white"></div>
+      </div>
+      <div class="white sixth"></div>
+      <div class="seventh">
+        <div class="yellow"></div>
+        <div class="black"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
