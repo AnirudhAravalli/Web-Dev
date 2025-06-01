@@ -1,0 +1,29 @@
+{
+  "name": "twitter_bot_mcp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnirudhAravalli/Twitter-Bot-MCP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AnirudhAravalli/Twitter-Bot-MCP.git"
+  },
+  "homepage": "https://github.com/AnirudhAravalli/Twitter-Bot-MCP#readme",
+  "dependencies": {
+    "@google/genai": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "twitter-api-v2": "^1.23.2",
+    "zod": "^3.25.28"
+  }
+}
